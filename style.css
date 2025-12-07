@@ -1,0 +1,380 @@
+/* --- 基礎設定與字體 --- */
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: #f7fff7;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#game-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 50, 0, 0.2);
+    width: 95%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+h1 {
+    color: #008080;
+    font-size: 1.8em;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+/* --- 核心：左右雙欄佈局 --- */
+#main-game-area {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+#habitat-area {
+    flex: 0 0 40%; 
+    min-width: 0; 
+    background-color: #eafbea;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 50, 0, 0.1);
+}
+
+#supply-chain-area {
+    flex: 1; 
+    padding: 0;
+}
+
+/* --- 狀態卡片風格 (通用) --- */
+.card-status {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    background-color: #e6ffee;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.card-status p {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#health-score, #demand-value, #supply-value {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+/* --- 右側分數板 (Score Board) --- */
+#score-board {
+    margin-bottom: 15px;
+    background-color: #fff8e1;
+}
+
+#current-score, #high-score {
+    color: #008080;
+    font-size: 1.1em;
+}
+
+
+/* --- 左側狀態欄 (需求/供給) --- */
+#habitat-area h2 {
+    color: #3cb371;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.status-supply {
+    margin-bottom: 25px; 
+}
+
+/* --- 左側：棲地網格 (點擊區) --- */
+#habitat-grid {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background-color: #8fbc8f;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: crosshair;
+    user-select: none;
+}
+
+#initial-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.habitat-item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.habitat-item:hover { transform: scale(1.1); }
+.habitat-item.animal { border: 3px solid gold; }
+
+.item-name-tag {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+
+/* 浮動文字提示 */
+.floating-text {
+    position: absolute;
+    z-index: 50;
+    font-size: 1.2em;
+    font-weight: 900;
+    text-shadow: 1px 1px 2px #000;
+    animation: floatup 1s ease-out forwards;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.floating-text.success { color: #4CAF50; }
+.floating-text.fail { color: #d9534f; }
+.floating-text.supply { color: #FFA500; }
+
+@keyframes floatup {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-50px); }
+}
+
+/* --- 右側：知識與需求區 --- */
+#supply-chain-area h2 {
+    color: #3cb371;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+
+#knowledge-quiz {
+    background-color: #f0fff0;
+    border: 1px solid #c8e6c9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 5px;
+    min-height: 120px;
+}
+
+/* --- 右側圖片放大 --- */
+#quiz-image-container {
+    height: 180px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+#quiz-animal-image {
+    max-width: 80%;
+    max-height: 170px;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#quiz-prompt {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    min-height: 50px;
+}
+
+#quiz-choices { display: flex; gap: 10px; }
+.choice-btn { flex: 1; padding: 10px 5px; font-size: 0.9em; font-weight: bold; border: none; border-radius: 8px; transition: background-color 0.2s, transform 0.1s; cursor: pointer; }
+.choice-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.illegal { background-color: #d9534f; color: white; }
+.legal { background-color: #5cb85c; color: white; }
+.knowledge-point { 
+    background-color: #f0fff0;
+    border: 1px solid #3cb371;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 700;
+    margin-top: 15px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.result-win { color: #2e8b57; }
+.result-lose { color: #d9534f; }
+
+/* --- 底部控制區 --- */
+#control-area {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.control-btn {
+    font-size: 1.2em;
+    font-weight: 700;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 10px;
+}
+
+.start-btn { background-color: #2e8b57; color: white; }
+.pause-btn { background-color: #ffc107; color: #333; }
+.pokedex-btn { background-color: #008080; color: white; }
+
+/* --- 模態框內 Tabs --- */
+#modal-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 1em;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom 0.2s;
+}
+
+.tab-btn.active {
+    border-bottom: 3px solid #008080;
+    font-weight: bold;
+}
+
+.tab-content.hidden { display: none; }
+
+/* 歷史紀錄列表樣式 */
+#history-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.history-record {
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    border-left: 5px solid;
+}
+
+.record-win { border-left-color: #2e8b57; background-color: #f0fff0; }
+.record-fail { border-left-color: #d9534f; background-color: #fff0f0; }
+
+
+/* --- 圖鑑卡片和稀有度標籤 --- */
+#pokedex-list { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+    gap: 15px; 
+    padding-top: 10px; 
+}
+
+.pokedex-card { 
+    position: relative; 
+    background-color: #f8f8f8; 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    border-radius: 8px; 
+    text-align: center; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    transition: all 0.3s; 
+}
+
+.pokedex-card img { 
+    width: 100px; 
+    height: 100px; 
+    object-fit: contain; 
+    filter: grayscale(100%); 
+    transition: filter 0.5s; 
+    margin-top: 15px; 
+}
+
+/* 稀有度標籤樣式 */
+.rarity-tag {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* 稀有度顏色定義 */
+.rarity-5 .rarity-tag { background-color: #777; } /* 常見 */
+.rarity-4 .rarity-tag { background-color: #4CAF50; } /* 不常見 */
+.rarity-3 .rarity-tag { background-color: #2196F3; } /* 稀有 */
+.rarity-2 .rarity-tag { background-color: #9C27B0; } /* 極稀有 */
+.rarity-1 .rarity-tag { background-color: #FF9800; } /* 傳說 */
+
+
+.pokedex-card.unlocked { background-color: #eafaea; border-color: #3cb371; }
+.pokedex-card.unlocked img { filter: grayscale(0%); }
+.pokedex-card h4 { color: #3cb371; margin: 5px 0; font-size: 1.1em; min-height: 25px; }
+.pokedex-card .pokedex-reason { font-size: 0.85em; color: #888; min-height: 40px; }
+.pokedex-card.locked { background-color: #eee; }
+.pokedex-card.locked h4 { color: #999; }
+
+
+/* --- 響應式設計 --- */
+@media (max-width: 850px) {
+    #main-game-area { flex-direction: column; }
+    #habitat-area, #supply-chain-area { width: 100%; flex: none; }
+    #habitat-grid { height: 300px; }
+    #control-area { flex-direction: column; gap: 10px; }
+}
+
+/* --- 模態框 (其餘不變) --- */
+.modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); padding-top: 60px; }
+.modal-content { background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 10px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.modal-content h2 { color: #008080; margin-bottom: 20px; border-bottom: 2px solid #e0eee0; padding-bottom: 10px; text-align: center; }
+.close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; }

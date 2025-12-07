@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>棲地守護者：供給鏈阻斷戰</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>🌳 棲地守護者：供給鏈阻斷戰 ⚔️</h1>
+        
+        <div id="main-game-area">
+            
+            <div id="habitat-area">
+                <header class="card-status">
+                    <p>棲地健康值: <span id="health-score">100</span></p>
+                    <p>遊戲時長: <span id="game-timer">00:00:00</span></p>
+                </header>
+                
+                <h2>📉 黑市供給壓力</h2>
+                <div class="card-status status-supply">
+                    <p>黑市需求量: <span id="demand-value">100</span></p>
+                    <p>盜獵供給量: <span id="supply-value">0</span></p>
+                </div>
+
+                <div id="habitat-grid">
+                    <div id="initial-message">點擊開始，守護這片棲地！</div>
+                </div>
+            </div>
+
+            <div id="supply-chain-area">
+                
+                <div id="score-board" class="card-status">
+                    <p>當前得分: <span id="current-score">0</span></p>
+                    <p>歷史最高分: <span id="high-score">0</span></p>
+                </div>
+
+                <h2>📚 知識辨識與意識提升</h2>
+                
+                <div id="knowledge-quiz">
+                    
+                    <div id="quiz-image-container">
+                        <img id="quiz-animal-image" src="" alt="情境涉及的動物圖片">
+                    </div>
+                    
+                    <h3 id="quiz-prompt">點擊開始按鈕以加載情境問答。</h3>
+                    <div id="quiz-choices">
+                        <button id="choice-a" class="choice-btn" disabled>🚨 判斷：非法走私！</button>
+                        <button id="choice-b" class="choice-btn" disabled>✅ 合法貿易</button>
+                    </div>
+                </div>
+                
+                <div id="result-message" class="feedback knowledge-point"></div>
+            </div>
+
+        </div>
+        
+        <div id="control-area">
+            <button id="pause-button" class="control-btn pause-btn" disabled>⏸️ 暫停遊戲</button> 
+            <button id="start-button" class="control-btn start-btn">開始遊戲</button>
+            <button id="pokedex-button" class="control-btn pokedex-btn">圖鑑/歷史紀錄</button>
+        </div>
+    </div>
+    
+    <div id="pokedex-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>📖 歷史紀錄與圖鑑</h2>
+            <div id="modal-tabs">
+                <button id="tab-pokedex" class="tab-btn active">生物圖鑑</button>
+                <button id="tab-history" class="tab-btn">歷史成績</button>
+            </div>
+            
+            <div id="tab-content-pokedex" class="tab-content">
+                <div id="pokedex-list"></div>
+            </div>
+            
+            <div id="tab-content-history" class="tab-content hidden">
+                <h3>歷史成績列表</h3>
+                <div id="history-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
